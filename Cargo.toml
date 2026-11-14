@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2026 Juan Carlos Isaza
+# SPDX-License-Identifier: MIT
+[package]
+name = "tequendama"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Juan Carlos Isaza"]
+description = "Ingestión de datos externos: cliente HTTP, reintentos, ritmo, procedencia y ledger reanudable. Lo que los importadores repetían, en un solo sitio."
+repository = "file:///mnt/data/espejos/tequendama.git"
+readme = "README.md"
+
+[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls", "gzip"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+csv = "1"
+time = { version = "0.3", features = ["serde-well-known", "macros", "formatting", "parsing"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+# --- Estándar de nacimiento (directiva 26) ---
+# Las DEPENDENCIAS optimizadas también en debug: sin esto, un árbol con TLS y
+# compresión tarda una eternidad en las pruebas.
+[profile.dev.package."*"]
+opt-level = 3
+
+# PUERTA de buenas prácticas (no aviso): el CI corre `-D warnings`, así que aquí
+# solo entra lo que se está dispuesto a BLOQUEAR y que `clippy --fix` limpia a cero.
+[lints.clippy]
+redundant_clone = "deny"
+needless_collect = "deny"

@@ -1,0 +1,8 @@
+tequendama
+Copyright (c) 2026 Juan Carlos Isaza (Isaza Arenas).
+
+Crate de ingestión de datos externos. Nace de que los importadores del universo
+(IDEAM, DANE, SECOP, INVIMA, catálogos RIPS, feeds H1…) reinventaban lo mismo:
+cliente HTTP, reintentos, ritmo, deduplicación reanudable y procedencia. Aquí,
+una sola vez. El nombre es el Salto del Tequendama: por donde el agua de afuera
+cae al embalse.
